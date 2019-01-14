@@ -1,0 +1,85 @@
+
+<div class="animated fadeIn">
+  <form #f="ngForm" novalidate (ngSubmit)="agregarFol(f)">
+    <div class="row">
+      <div class="col-sm">
+        <select #cityId class="form-control" name="cityId" (change)="changeValueCity(cityId.value)" [ngModel]="city">
+          <option *ngFor="let city of _cities" [value]="city">{{city}}</option>
+        </select>
+      </div><!--/.col-->
+      <div class="col-sm">
+        <select #tempId class="form-control" name="tempId" (change)="changeValueTemp(tempId.value)" [ngModel]="temp">
+          <option *ngFor="let temp of _temp" [value]="temp">{{temp}}</option>
+        </select>
+      </div><!--/.col-->
+      <div class="col-sm">
+        <div class="input-group">
+          <span class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar" (click)="dp.toggle()"></i></span></span>
+          <input type="text"
+                 class="form-control"
+                 #dp="bsDatepicker"
+                 bsDatepicker [(bsValue)]="bsValue" (ngModelChange)="changeValueDate($event)">
+        </div>
+      </div><!--/.col-->
+    </div><!--/.row-->
+  </form>
+  <div class="card">
+    <div class="card-header">
+      
+    </div>
+    <div class="card-body">
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart"
+                [datasets]="_labelsData"
+                [labels]="_labels"
+                [options]="mainChartOptions"
+                [colors]="mainChartColours"
+                [legend]="mainChartLegend"
+                [chartType]="mainChartType"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!--/.card-->
+  <div class="row">
+    <div class="material-datatables table-responsive">
+      <table class="table table-striped table-no-bordered table-hover" datatable [dtOptions]="dtOptions">
+        <thead>
+          <tr>
+            <th>Temperature</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of valueTable">
+            <td>{{ item.temp }}</td>
+            <td>{{ item.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!--/.row-->
+  <div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{_resulthdr}}</h4>
+          <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{{_resultmsg}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Ok</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>
+
+
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>

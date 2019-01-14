@@ -1,0 +1,65 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "version": "1.8.14",
+    "name": "@prueba/angular"
+  },
+  "apps": [
+    {
+      "root": "",
+      "sourceRoot": "src",
+      "outDir": "dist",
+      "assets": [ "src/assets" ],
+      "index": "src/index.html",
+      "main": "src/main.ts",
+      "polyfills": "src/polyfills.ts",
+      "test": "src/test.ts",
+      "tsconfig": "src/tsconfig.app.json",
+      "testTsconfig": "src/tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "node_modules/flag-icon-css/css/flag-icon.css",
+        "node_modules/font-awesome/css/font-awesome.css",
+        "node_modules/simple-line-icons/css/simple-line-icons.css",
+        "src/scss/style.scss"
+      ],
+      "scripts": [
+        "./node_modules/chart.js/dist/Chart.bundle.min.js",
+        "./node_modules/chart.js/dist/Chart.min.js",
+        "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/datatables.net/js/jquery.dataTables.js",
+        "./node_modules/angular-chart.js/dist/angular-chart.min.js"
+      ],
+      "environmentSource": "src/environments/environment.ts",
+      "environments": {
+        "dev": "src/environments/environment.ts",
+        "prod": "src/environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "tsconfig.app.json"
+    },
+    {
+      "project": "tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false
+  }
+}
